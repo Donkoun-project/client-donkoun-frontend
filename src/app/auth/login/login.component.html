@@ -1,0 +1,124 @@
+<div class="wrraper">
+  <div class="min-h-screen flex auth-container">
+      <div class="w-full md:w-1/2 flex items-center justify-center">
+          <div class="max-w-md w-full space-y-8 p-10 auth-form rounded-xl shadow-2xl">
+              <div>
+                  <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900" style="cursor: pointer;">
+                      <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500" routerLink="/home">Donkoun</span>
+                  </h2>
+                  <p class="mt-2 text-center text-sm text-gray-600">
+                      Connect. Ship. Deliver.
+                  </p>
+              </div>
+              <div class="flex justify-center space-x-4">
+                  <button onclick="showLogin()" class="px-4 py-2 border-b-2 font-medium text-sm focus:outline-none transition-all duration-300" id="loginTab">
+                      Login
+                  </button>
+                  <button onclick="showRegister()" class="px-4 py-2 border-b-2 font-medium text-sm focus:outline-none transition-all duration-300" id="registerTab">
+                      Register
+                  </button>
+              </div>
+              
+              <!-- Login Form -->
+              <form class="mt-8 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" id="loginForm">
+                <div class="input-group">
+                    <input type="text" formControlName="telephone" required>
+                    <span class="bottom-bar"></span>
+                    <label>Telephone</label>
+                    <div *ngIf="loginForm.get('telephone')?.invalid && loginForm.get('telephone')?.touched">
+                      <small *ngIf="loginForm.get('telephone')?.hasError('required')">Telephone is required.</small>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <input type="password" formControlName="password" required>
+                    <span class="bottom-bar"></span>
+                    <label>Password</label>
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                      <small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
+                      <small *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+                    </div>
+                  </div>
+                
+                  <div class="flex items-center justify-between">
+                    
+                    <div class="text-sm">
+                      <a href="#" class="font-medium text-purple-600 hover:text-purple-500">
+                        Forgot password?
+                      </a>
+                    </div>
+                  </div>
+                
+                  <div>
+                    <button type="submit" [disabled]="!this.loginForm.valid" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white gradient-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105">
+                      Sign in
+                    </button>
+                  </div>
+               </form>
+
+              <!-- Register Form -->
+              <form class="mt-8 space-y-6 hidden" [formGroup]="registerForm" (ngSubmit)="onSubmit()" id="registerForm">
+                  <div class="input-group">
+                      <input type="text" formControlName="username" required>
+                      <span class="bottom-bar"></span>
+                      <label>Username </label>
+                      <div *ngIf="registerForm.get('username') && registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                        <small *ngIf="registerForm.get('username')?.hasError('required')">Username is required.</small>
+                      </div>
+                    </div>
+                  
+                    <div class="input-group">
+                      <input type="email" formControlName="email" required>
+                      <span class="bottom-bar"></span>
+                      <label>Email address</label>
+                      <div *ngIf="registerForm.get('email') && registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                        <small *ngIf="registerForm.get('email')!.hasError('required')">Email is required.</small>
+                        <small *ngIf="registerForm.get('email')!.hasError('email')">Invalid email address.</small>
+                      </div>
+                    </div>
+                  
+                    <div class="input-group">
+                      <input type="text" formControlName="telephone" required>
+                      <span class="bottom-bar"></span>
+                      <label>Telephone</label>
+                      <div *ngIf="registerForm.get('telephone') && registerForm.get('telephone')?.invalid && registerForm.get('telephone')?.touched">
+                        <small *ngIf="registerForm.get('telephone')!.hasError('required')">Telephone is required.</small>
+                      </div>
+                    </div>
+                  
+                    <div class="input-group">
+                      <input type="password" formControlName="password" required>
+                      <span class="bottom-bar"></span>
+                      <label>Password</label>
+                      <div *ngIf="registerForm.get('password') && registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                        <small *ngIf="registerForm.get('password')!.hasError('required')">Password is required.</small>
+                        <small *ngIf="registerForm.get('password')!.hasError('minlength')">Password must be at least 6 characters long.</small>
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <input type="password" formControlName="confirmPassword" required>
+                      <span class="bottom-bar"></span>
+                      <label>Confirm password</label>
+                      <div *ngIf="registerForm?.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                        <small *ngIf="registerForm?.get('confirmPassword')?.hasError('required')">Password confirmation is required.</small>
+                      </div>
+                      <div *ngIf="registerForm?.errors?.['passwordMismatch'] && registerForm?.touched">
+                        <small>Passwords do not match.</small>
+                      </div>
+                    </div>
+                    <div>
+                      <button type="submit" [disabled]="!this.registerForm?.valid" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white gradient-button focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105">
+                        Register
+                      </button>
+                    </div>
+              </form>
+          </div>
+      </div>
+      <div class="hidden md:flex md:w-1/2 image-side items-center justify-center relative">
+          <div class="overlay absolute inset-0"></div>
+          <div class="z-10 text-white text-center">
+              <h2 class="text-4xl font-bold mb-4">Welcome to Donkoun</h2>
+              <p class="text-xl">Your global shipping solution</p>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+.wrraper {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+.auth-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.auth-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
+.gradient-button {
+    background: linear-gradient(90deg, #4F46E5, #7C3AED);
+}
+.gradient-button:hover {
+    background: linear-gradient(90deg, #4338CA, #6D28D9);
+}
+.image-side {
+    background-image: url('/api/placeholder/1920/1080');
+    background-size: cover;
+    background-position: center;
+}
+.overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #333;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    background: transparent;
+    transition: 0.3s;
+}
+.input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #777;
+    pointer-events: none;
+    transition: 0.3s;
+}
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: #4F46E5;
+}
+.input-group .bottom-bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.input-group .bottom-bar:before, .input-group .bottom-bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: #4F46E5;
+    transition: 0.3s ease all;
+}
+.input-group .bottom-bar:before {
+    left: 50%;
+}
+.input-group .bottom-bar:after {
+    right: 50%;
+}
+.input-group input:focus ~ .bottom-bar:before,
+.input-group input:focus ~ .bottom-bar:after {
+    width: 50%;
+}
