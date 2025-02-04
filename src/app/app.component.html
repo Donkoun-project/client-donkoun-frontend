@@ -1,4 +1,5 @@
-<app-header></app-header> 
+<ng-container *ngIf="this.currentPath != '/auth/login'"> 
+       <app-header></app-header>
+</ng-container>
 <router-outlet></router-outlet>
 
-<app-footer></app-footer>

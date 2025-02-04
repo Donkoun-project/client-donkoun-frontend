@@ -9,6 +9,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { GlobalWrapperComponent } from './layout/global-wrapper/global-wrapper.component';
 import { SharedService } from './shared/shared.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,12 @@ import { SharedService } from './shared/shared.service';
     AppRoutingModule
   ],
   providers: [
-    SharedService
+    SharedService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

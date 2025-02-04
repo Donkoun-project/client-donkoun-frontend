@@ -1,108 +1,96 @@
 <main class="container mx-auto px-6 py-8">
+    <br><br> <br>
     <h1 class="text-3xl font-bold mb-6">Créer un Nouveau Colis</h1>
-    
-    <form class="bg-white rounded-lg shadow-md p-6">
+    <form class="bg-white rounded-lg shadow-md p-6" (ngSubmit)="onSubmit()">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Informations de l'Expéditeur</h2>
-                <div class="mb-4">
-                    <label for="sender-name" class="block text-sm font-medium text-gray-700 mb-1">Nom Complet</label>
-                    <input type="text" id="sender-name" name="sender-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="sender-email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                    <input type="email" id="sender-email" name="sender-email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="sender-phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-                    <input type="tel" id="sender-phone" name="sender-phone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="sender-address" class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
-                    <textarea id="sender-address" name="sender-address" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required></textarea>
-                </div>
-            </div>
-            
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Informations du Destinataire</h2>
-                <div class="mb-4">
-                    <label for="recipient-name" class="block text-sm font-medium text-gray-700 mb-1">Nom Complet</label>
-                    <input type="text" id="recipient-name" name="recipient-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="recipient-email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                    <input type="email" id="recipient-email" name="recipient-email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="recipient-phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-                    <input type="tel" id="recipient-phone" name="recipient-phone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="recipient-address" class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
-                    <textarea id="recipient-address" name="recipient-address" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-8">
-            <h2 class="text-xl font-semibold mb-4">Détails du Colis</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="mb-4">
-                    <label for="parcel-type" class="block text-sm font-medium text-gray-700 mb-1">Type de Colis</label>
-                    <select id="parcel-type" name="parcel-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                        <option value="">Sélectionnez le type</option>
-                        <option value="document">Document</option>
-                        <option value="package">Paquet</option>
-                        <option value="fragile">Fragile</option>
-                        <option value="perishable">Périssable</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Poids (kg)</label>
-                    <input type="number" id="weight" name="weight" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-                <div class="mb-4">
-                    <label for="dimensions" class="block text-sm font-medium text-gray-700 mb-1">Dimensions (L x l x H cm)</label>
-                    <input type="text" id="dimensions" name="dimensions" placeholder="30 x 20 x 10" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                </div>
-            </div>
+          <div>
+            <h2 class="text-xl font-semibold mb-4">Informations sur le Transport</h2>
             <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea id="description" name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required></textarea>
+              <label for="transport-type" class="block text-sm font-medium text-gray-700 mb-1">Type de Transport</label>
+              <input type="text" id="transport-type" [(ngModel)]="transport.transportType" name="transportType" class="w-full px-3 py-2 border border-gray-300 rounded-md">
             </div>
+      
             <div class="mb-4">
-                <label for="declared-value" class="block text-sm font-medium text-gray-700 mb-1">Valeur Déclarée (€)</label>
-                <input type="number" id="declared-value" name="declared-value" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
+              <label for="transport-company" class="block text-sm font-medium text-gray-700 mb-1">Compagnie de Transport</label>
+              <input type="text" id="transport-company" [(ngModel)]="transport.transportCompany" name="transportCompany" class="w-full px-3 py-2 border border-gray-300 rounded-md">
             </div>
+      
+            <div class="mb-4">
+              <label for="departure-city" class="block text-sm font-medium text-gray-700 mb-1">Ville de Départ</label>
+              <input type="text" id="departure-city" [(ngModel)]="transport.departureCity" name="departureCity" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+      
+            <div class="mb-4">
+              <label for="arrival-city" class="block text-sm font-medium text-gray-700 mb-1">Ville d'Arrivée</label>
+              <input type="text" id="arrival-city" [(ngModel)]="transport.arrivalCity" name="arrivalCity" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+          </div>
+      
+          <div>
+            <h2 class="text-xl font-semibold mb-4">Dates et Quantité</h2>
+      
+            <div class="mb-4">
+              <label for="departure-date" class="block text-sm font-medium text-gray-700 mb-1">Date de Départ</label>
+              <input type="datetime-local" id="departure-date" [(ngModel)]="transport.departureDate" name="departureDate" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+      
+            <div class="mb-4">
+              <label for="arrival-date" class="block text-sm font-medium text-gray-700 mb-1">Date d'Arrivée</label>
+              <input type="datetime-local" id="arrival-date" [(ngModel)]="transport.arrivalDate" name="arrivalDate" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+      
+            <div class="mb-4">
+              <label for="available-quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantité Disponible (kg)</label>
+              <input type="number" id="available-quantity" [(ngModel)]="transport.availableQuantity" name="availableQuantity" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+      
+            <div class="mb-4">
+              <label for="min-reservation" class="block text-sm font-medium text-gray-700 mb-1">Réservation Minimum (kg)</label>
+              <input type="number" id="min-reservation" [(ngModel)]="transport.minReservation" name="minReservation" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+          </div>
         </div>
-
+      
         <div class="mt-8">
-            <h2 class="text-xl font-semibold mb-4">Options d'Expédition</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="mb-4">
-                    <label for="shipping-method" class="block text-sm font-medium text-gray-700 mb-1">Méthode d'Expédition</label>
-                    <select id="shipping-method" name="shipping-method" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                        <option value="">Sélectionnez la méthode</option>
-                        <option value="standard">Standard</option>
-                        <option value="express">Express</option>
-                        <option value="overnight">Nuitée</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="insurance" class="block text-sm font-medium text-gray-700 mb-1">Assurance</label>
-                    <select id="insurance" name="insurance" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none form-input" required>
-                        <option value="no">Pas d'assurance</option>
-                        <option value="basic">Assurance Basique</option>
-                        <option value="premium">Assurance Premium</option>
-                    </select>
-                </div>
+          <h2 class="text-xl font-semibold mb-4">Informations de Livraison</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="mb-4">
+              <label for="pickup-location" class="block text-sm font-medium text-gray-700 mb-1">Lieu de Prise en Charge</label>
+              <input type="text" id="pickup-location" [(ngModel)]="transport.pickupLocation" name="pickupLocation" class="w-full px-3 py-2 border border-gray-300 rounded-md">
             </div>
+      
+            <div class="mb-4">
+              <label for="delivery-location" class="block text-sm font-medium text-gray-700 mb-1">Lieu de Livraison</label>
+              <input type="text" id="delivery-location" [(ngModel)]="transport.deliveryLocation" name="deliveryLocation" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+          </div>
         </div>
-
+      
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold mb-4">Tarification et Message</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="mb-4">
+              <label for="price-per-kg" class="block text-sm font-medium text-gray-700 mb-1">Prix par kg (USD)</label>
+              <input type="number" id="price-per-kg" [(ngModel)]="transport.pricePerKg" name="pricePerKg" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+      
+            <div class="mb-4">
+              <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">Devise</label>
+              <input type="text" id="currency" [(ngModel)]="transport.currency" name="currency" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+          </div>
+      
+          <div class="mb-4">
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <textarea id="message" [(ngModel)]="transport.message" name="message" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+          </div>
+        </div>
+      
         <div class="mt-8 flex justify-end">
-            <button type="submit" class="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md hover:from-purple-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-300">
-                Créer le Colis
-            </button>
+          <button type="submit" class="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md hover:from-purple-700 hover:to-blue-600">
+            Valider le Transport
+          </button>
         </div>
-    </form>
+      </form>
+      
 </main>

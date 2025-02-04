@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { TokenService } from 'src/app/shared/token.service';
 import { SharedService } from 'src/app/shared/shared.service';
-
+import { TokenService } from 'src/app/shared/token.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
      private sharedService: SharedService,
      private _router: Router,
      private _token: TokenService
-    
     ) {
    
   }
@@ -45,12 +43,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       
       // Appel de la fonction login du service
-      alert(this.loginForm?.value)
-      this.authService.login(this.loginForm?.value).subscribe(
+      this.authService.login(this.loginForm.value)
+      .subscribe(
         response => {
-          this._token?.setToken(response?.data)
+          this._token?.setToken(response?.data?.token)
           this.sharedService.showAlert("success", "Success", "Connected Successfully")
+          console.log('Login successful:', response);
           this._router.navigateByUrl("/home")
+         //   this.notificationService.showSuccess('Login successful!', 'Welcome');
+          // Redirection ou autres actions après une connexion réussie
         },
         error => {
           // Logique en cas d'erreur

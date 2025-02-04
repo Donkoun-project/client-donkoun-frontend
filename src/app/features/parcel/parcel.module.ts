@@ -7,6 +7,7 @@ import { HowDonkounWorksComponent } from '../how-donkoun-works/how-donkoun-works
 import { CreateEditParcelComponent } from './create-edit-parcel/create-edit-parcel.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule,
-    ParcelRoutingModule
+    ParcelRoutingModule,
+    FormsModule,
   //  SharedModule
     
   ],
